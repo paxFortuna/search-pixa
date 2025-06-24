@@ -13,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   final _controller = TextEditingController();
 
   @override
@@ -25,13 +24,15 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Photo> _photos = [];
 
   Future<List<Photo>> fetch(String query) async {
-    final response = await http.get(Uri.parse(
-      'https://pixabay.com/api/?key=26655862-d25160d651ed15b14be08cf35&'
-      '$query&image_type=photo'));
+    final response = await http.get(
+      Uri.parse(
+        'https://pixabay.com/api/?key=26655862-d25160d651ed15b14be08cf35&q=$query&image_type=photo&pretty=true'
+      ),
+    );
 
-      Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-      Iterable hits = jsonResponse['hits'];
-      return hits.map((e) => Photo.fromJson(e)).toList();
+    Map<String, dynamic> jsonResponse = jsonDecode(response.body);
+  Iterable hits = jsonResponse['hits'];
+    return hits.map((e) => Photo.fromJson(e)).toList();
   }
 
   @override
@@ -48,13 +49,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                 ),
                 suffixIcon: IconButton(
-                  onPressed: () async{
+                  onPressed: () async {
                     //
-                   final photos =await fetch(_controller.text);
-                   setState(() {
-                     _photos = photos;
-                   });
-                  
+                    final photos = await fetch(_controller.text);
+                    setState(() {
+                      _photos = photos;
+                    });
                   },
                   icon: const Icon(Icons.search),
                 ),

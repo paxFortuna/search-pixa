@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Photo {
   final int id;
   final String pageURL;
@@ -102,7 +100,7 @@ class Photo {
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'id': id,
       'pageURL': pageURL,
@@ -130,7 +128,7 @@ class Photo {
     };
   }
 
-  factory Photo.fromMap(Map<String, dynamic> map) {
+  factory Photo.fromJson(Map<String, dynamic> map) {
     return Photo(
       id: map['id'].toInt() as int,
       pageURL: map['pageURL'] as String,
@@ -158,9 +156,9 @@ class Photo {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  // String toJson() => json.encode(toMap());
 
-  factory Photo.fromJson(String source) => Photo.fromMap(json.decode(source) as Map<String, dynamic>);
+  // factory Photo.fromJson(String source) => Photo.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
