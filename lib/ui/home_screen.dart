@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:image_search/model/photo.dart';
 import 'package:image_search/ui/widget/photo_widget.dart';
 import 'package:http/http.dart' as http;
@@ -22,11 +23,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Photo> _photos = [];
+  String apiKey = dotenv.env['API_KEY'] ?? '';
 
   Future<List<Photo>> fetch(String query) async {
     final response = await http.get(
       Uri.parse(
-        'https://pixabay.com/api/?key=26655862-d25160d651ed15b14be08cf35&q=$query&image_type=photo&pretty=true'
+        'https://pixabay.com/api/?key=$apiKey&q=$query&image_type=photo&pretty=true'
       ),
     );
 
@@ -44,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
+              controller: _controller,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
