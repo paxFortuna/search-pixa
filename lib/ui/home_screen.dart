@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:image_search/data/api.dart';
+import 'package:image_search/data/photo_provider.dart';
 import 'package:image_search/model/photo.dart';
 import 'package:image_search/ui/widget/photo_widget.dart';
 
@@ -15,7 +15,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  final pixbayApi = PixabayApi();
   
   final _controller = TextEditingController();
 
@@ -29,6 +28,9 @@ class _HomeScreenState extends State<HomeScreen> {
   
   @override
   Widget build(BuildContext context) {
+
+    final photoProvider = PhotoProvider.of(context);
+
     return Scaffold(
       appBar: AppBar(title: Text('Image Search App'), centerTitle: true),
       body: Column(
@@ -44,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 suffixIcon: IconButton(
                   onPressed: () async {
                     //
-                    final photos = await pixbayApi.fetch(_controller.text);
+                    final photos = await photoProvider.api.fetch(_controller.text);
                     setState(() {
                       _photos = photos;
                     });
@@ -67,7 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 //
                 final photo = _photos[index];
-                return PhotoWidget(photo: photo);
+                return PhotoWidget(
+                  photo: photo,);
               },
             ),
           ),

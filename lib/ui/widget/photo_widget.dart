@@ -3,7 +3,7 @@ import 'package:image_search/model/photo.dart';
 
 class PhotoWidget extends StatelessWidget {
   final Photo photo;
-  const PhotoWidget({super.key, required this.photo});
+  const PhotoWidget({super.key, required this.photo,});
 
   @override
   Widget build(BuildContext context) {

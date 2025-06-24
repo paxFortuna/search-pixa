@@ -1,0 +1,21 @@
+import 'package:flutter/widgets.dart';
+import 'package:image_search/data/api.dart';
+
+class PhotoProvider extends InheritedWidget {
+  final PixabayApi api;
+  const PhotoProvider( {super.key, required super.child, required this.api,});
+  // InheritecWidget 문서에 있는 코드임, of함수를 통해 접금
+  static PhotoProvider of(BuildContext context) {
+    final PhotoProvider? result = 
+    context.dependOnInheritedWidgetOfExactType<PhotoProvider>();
+    // result가 null이 아니면 진행, 널이면 뒤의 에러 메시지 보여준다.
+    assert(result !=null, 'No PixabayApi found in context');
+    return result!;
+  }
+  @override
+  // 위의 위젯이 변경되면 알려주는 것
+  bool updateShouldNotify(PhotoProvider oldWidget) {
+    return oldWidget.api != api;
+  }
+
+}
