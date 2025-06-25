@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:image_search/data/photo_api_repository.dart';
 import 'package:image_search/model/photo.dart';
 import 'package:http/http.dart' as http;
 
-class PixabayApi {
+class PixabayApi implements PhotoApiRepository{
 
 static final apiKey = dotenv.env['API_KEY'] ?? '';
 static final baseUrl = 'https://pixabay.com';
