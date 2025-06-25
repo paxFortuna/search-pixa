@@ -1,11 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 import 'package:image_search/data/api.dart';
+import 'package:image_search/model/photo.dart';
 
 class PhotoProvider extends InheritedWidget {
   // 인스턴스 생성하여 main에서 주입한다.
   final PixabayApi api;
-  //
-  const PhotoProvider( {
+  // Stream
+  final _photoScreamController = StreamController<List<Photo>>()..add([]);
+  Stream<List<Photo>> get photoStream => _photoScreamController.stream;
+
+  PhotoProvider( {
     super.key, 
     required super.child, 
     required this.api,
@@ -18,6 +24,11 @@ class PhotoProvider extends InheritedWidget {
     // result가 null이 아니면 진행, 널이면 뒤의 에러 메시지 보여준다.
     assert(result !=null, 'No PixabayApi found in context');
     return result!;
+  }
+
+  Future<void> fetch(String query) async {
+    final result = await api.fetch(query);
+    _photoScreamController.add(result);
   }
   
   @override

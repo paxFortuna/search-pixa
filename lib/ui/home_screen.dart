@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:image_search/data/api.dart';
 import 'package:image_search/data/photo_provider.dart';
 import 'package:image_search/model/photo.dart';
 import 'package:image_search/ui/widget/photo_widget.dart';
@@ -14,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   
   final _controller = TextEditingController();
 
@@ -24,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  List<Photo> _photos = [];
+  // List<Photo> _photos = [];
   
   @override
   Widget build(BuildContext context) {
@@ -46,33 +44,44 @@ class _HomeScreenState extends State<HomeScreen> {
                 suffixIcon: IconButton(
                   onPressed: () async {
                     //
-                    final photos = await photoProvider.api.fetch(_controller.text);
-                    setState(() {
-                      _photos = photos;
-                    });
+                    // final photos = await photoProvider.api.fetch(_controller.text);
+                    photoProvider.fetch(_controller.text);
+                    // setState(() {
+                    //   _photos = photos;
+                    // });
                   },
                   icon: const Icon(Icons.search),
                 ),
               ),
             ),
           ),
-          Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.all(16),
-              // shrinkWrap: true, // 영역 확보
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-              ),
-              itemCount: _photos.length,
-              itemBuilder: (context, index) {
-                //
-                final photo = _photos[index];
-                return PhotoWidget(
-                  photo: photo,);
-              },
-            ),
+          StreamBuilder<List<Photo>>(
+            stream: photoProvider.photoStream,
+            builder: (context, snapshot) {
+              if(!snapshot.hasData){
+                return Center(child: CircularProgressIndicator());
+              }
+
+              final photos = snapshot.data!;
+              return Expanded(
+                child: GridView.builder(
+                  padding: const EdgeInsets.all(16),
+                  // shrinkWrap: true, // 영역 확보
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                  ),
+                  itemCount: photos.length,
+                  itemBuilder: (context, index) {
+                    //
+                    final photo = photos[index];
+                    return PhotoWidget(
+                      photo: photo,);
+                  },
+                ),
+              );
+            }
           ),
         ],
       ),
