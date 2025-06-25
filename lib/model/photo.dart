@@ -7,7 +7,7 @@ part 'photo.g.dart';
 
 // ignore_for_file: annotate_overrides
 @freezed
-@JsonSerializable()
+@JsonSerializable() // fromJson, toJson 사용하기 위해
 class Photo with _$Photo{
   final int id;
   final String tags;
@@ -17,6 +17,8 @@ class Photo with _$Photo{
 
 factory Photo.fromJson(Map<String, dynamic> json) 
   => _$PhotoFromJson(json); 
+
+  // toJson()은 freezed에서 제공하는 걸로 사용
   
 }
 
