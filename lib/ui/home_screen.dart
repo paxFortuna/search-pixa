@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // final viewModel = PhotoProvider.of(context).viewModel;
     // final viewModel = Provider.of<HomeViewModel>(context);
     // Consumer<HomeViewModel> 사용하면 필요 없음.
-    // final viewModel = context.watch<HomeViewModel>();
+    final viewModel = context.watch<HomeViewModel>();
 
     return Scaffold(
       appBar: AppBar(title: Text('Image Search App'), centerTitle: true),
@@ -48,8 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     //
                     // // final photos = await photoProvider.api.fetch(_controller.text);
                     // photoProvider.fetch(_controller.text);
-                    // viewModel.fetch(_controller.text);
-                    context.read<HomeViewModel>().fetch(_controller.text);
+                    viewModel.fetch(_controller.text);
+                    // Consumer<HomeViewModel> 사용하는 경우 아래
+                    // context.read<HomeViewModel>().fetch(_controller.text);
                     // // setState(() {
                     // //   _photos = photos;
                     // // });
@@ -59,26 +60,22 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          Consumer<HomeViewModel>(
-            builder: (_, viewModel, child) {
-              return Expanded(
-                child: GridView.builder(
-                  padding: const EdgeInsets.all(16),
-                  // shrinkWrap: true, // 영역 확보
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                  ),
-                  itemCount: viewModel.photos.length,
-                  itemBuilder: (context, index) {
-                    //
-                    final photo = viewModel.photos[index];
-                    return PhotoWidget(photo: photo);
-                  },
-                ),
-              );
-            },
+          Expanded(
+            child: GridView.builder(
+              padding: const EdgeInsets.all(16),
+              // shrinkWrap: true, // 영역 확보
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+              ),
+              itemCount: viewModel.photos.length,
+              itemBuilder: (context, index) {
+                //
+                final photo = viewModel.photos[index];
+                return PhotoWidget(photo: photo);
+              },
+            ),
           ),
         ],
       ),
