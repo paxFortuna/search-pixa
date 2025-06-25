@@ -27,7 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final photoProvider = PhotoProvider.of(context);
+    // final photoProvider = PhotoProvider.of(context);
+    final viewModel = PhotoProvider.of(context).viewModel;
 
     return Scaffold(
       appBar: AppBar(title: Text('Image Search App'), centerTitle: true),
@@ -44,11 +45,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 suffixIcon: IconButton(
                   onPressed: () async {
                     //
-                    // final photos = await photoProvider.api.fetch(_controller.text);
-                    photoProvider.fetch(_controller.text);
-                    // setState(() {
-                    //   _photos = photos;
-                    // });
+                    // // final photos = await photoProvider.api.fetch(_controller.text);
+                    // photoProvider.fetch(_controller.text);
+                    viewModel.fetch(_controller.text);
+                    // // setState(() {
+                    // //   _photos = photos;
+                    // // });
                   },
                   icon: const Icon(Icons.search),
                 ),
@@ -56,7 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           StreamBuilder<List<Photo>>(
-            stream: photoProvider.photoStream,
+            // stream: photoProvider.photoStream,
+            stream: viewModel.photoStream,
             builder: (context, snapshot) {
               if(!snapshot.hasData){
                 return Center(child: CircularProgressIndicator());
