@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:flutter/widgets.dart';
-import 'package:image_search/model/photo.dart';
 import 'package:image_search/ui/home_view_model.dart';
 
 class PhotoProvider extends InheritedWidget {
@@ -11,7 +8,7 @@ class PhotoProvider extends InheritedWidget {
   // final _photoScreamController = StreamController<List<Photo>>()..add([]);
   // Stream<List<Photo>> get photoStream => _photoScreamController.stream;
   final HomeViewModel viewModel;
-  PhotoProvider( {
+  const PhotoProvider( {
     super.key, 
     required this.viewModel,
     required super.child, 

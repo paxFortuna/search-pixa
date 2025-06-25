@@ -9,6 +9,7 @@ class PixabayApi implements PhotoApiRepository{
 
 static final apiKey = dotenv.env['API_KEY'] ?? '';
 static final baseUrl = 'https://pixabay.com';
+  @override
   Future<List<Photo>> fetch(String query) async {
     final response = await http.get(
       Uri.parse(

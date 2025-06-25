@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:image_search/data/photo_provider.dart';
 import 'package:image_search/model/photo.dart';

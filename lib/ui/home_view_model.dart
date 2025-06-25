@@ -1,7 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
-
-import 'package:image_search/data/pixabay_api.dart';
 import 'package:image_search/data/photo_api_repository.dart';
 import 'package:image_search/model/photo.dart';
 
