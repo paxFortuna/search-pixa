@@ -14,7 +14,7 @@ void main(){
     final result = fakeJson.map((e)=>Photo.fromJson(e)).toList();
 
     expect(
-      viewModel.photoStream, 
+      viewModel.photos, 
       emitsInOrder([
         // type test
         // isA<List<Photo>>(),

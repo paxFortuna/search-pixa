@@ -13,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   final _controller = TextEditingController();
 
   @override
@@ -23,13 +22,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   // List<Photo> _photos = [];
-  
+
   @override
   Widget build(BuildContext context) {
-
     // final photoProvider = PhotoProvider.of(context);
     // final viewModel = PhotoProvider.of(context).viewModel;
-final viewModel = Provider.of<HomeViewModel>(context);
+    // final viewModel = Provider.of<HomeViewModel>(context);
+    // Consumer<HomeViewModel> 사용하면 필요 없음.
+    // final viewModel = context.watch<HomeViewModel>();
+
     return Scaffold(
       appBar: AppBar(title: Text('Image Search App'), centerTitle: true),
       body: Column(
@@ -47,7 +48,8 @@ final viewModel = Provider.of<HomeViewModel>(context);
                     //
                     // // final photos = await photoProvider.api.fetch(_controller.text);
                     // photoProvider.fetch(_controller.text);
-                    viewModel.fetch(_controller.text);
+                    // viewModel.fetch(_controller.text);
+                    context.read<HomeViewModel>().fetch(_controller.text);
                     // // setState(() {
                     // //   _photos = photos;
                     // // });
@@ -57,15 +59,8 @@ final viewModel = Provider.of<HomeViewModel>(context);
               ),
             ),
           ),
-          StreamBuilder<List<Photo>>(
-            // stream: photoProvider.photoStream,
-            stream: viewModel.photoStream,
-            builder: (context, snapshot) {
-              if(!snapshot.hasData){
-                return Center(child: CircularProgressIndicator());
-              }
-
-              final photos = snapshot.data!;
+          Consumer<HomeViewModel>(
+            builder: (_, viewModel, child) {
               return Expanded(
                 child: GridView.builder(
                   padding: const EdgeInsets.all(16),
@@ -75,16 +70,15 @@ final viewModel = Provider.of<HomeViewModel>(context);
                     crossAxisSpacing: 16,
                     mainAxisSpacing: 16,
                   ),
-                  itemCount: photos.length,
+                  itemCount: viewModel.photos.length,
                   itemBuilder: (context, index) {
                     //
-                    final photo = photos[index];
-                    return PhotoWidget(
-                      photo: photo,);
+                    final photo = viewModel.photos[index];
+                    return PhotoWidget(photo: photo);
                   },
                 ),
               );
-            }
+            },
           ),
         ],
       ),
