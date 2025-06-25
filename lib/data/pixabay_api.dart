@@ -8,10 +8,13 @@ import 'package:http/http.dart' as http;
 class PixabayApi implements PhotoApiRepository{
 
 static final apiKey = dotenv.env['API_KEY'] ?? '';
-static final baseUrl = 'https://pixabay.com';
+static const baseUrl = 'https://pixabay.com';
   @override
-  Future<List<Photo>> fetch(String query) async {
-    final response = await http.get(
+  Future<List<Photo>> fetch(String query, {http.Client? client}) async {
+    
+    client ??= http.Client();
+    
+    final response = await client.get(
       Uri.parse(
         '$baseUrl/api/?key=$apiKey&q=$query&image_type=photo&pretty=true'
       ),

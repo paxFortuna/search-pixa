@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 import 'package:image_search/data/photo_api_repository.dart';
 import 'package:image_search/model/photo.dart';
@@ -9,7 +8,6 @@ class HomeViewModel {
   HomeViewModel(
     this.repository,
   );
-
   final _photoScreamController = StreamController<List<Photo>>()..add([]);
   Stream<List<Photo>> get photoStream => _photoScreamController.stream;
 
