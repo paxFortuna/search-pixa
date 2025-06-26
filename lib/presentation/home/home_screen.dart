@@ -71,7 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) {
                 //
                 final photo = viewModel.photos[index];
-                return PhotoWidget(photo: photo);
+                return PhotoWidget(
+                  photo: photo,
+                );
               },
             ),
           ),
