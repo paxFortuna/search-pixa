@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:http/http.dart' as http;
-import 'package:image_search/data/data_source/pixabay_api.dart';
-import 'package:image_search/data/repository/photo_api_repository_impl.dart';
 import 'package:image_search/presentation/home/initial_binding.dart';
 import 'package:image_search/presentation/home/home_screen.dart';
-import 'package:image_search/presentation/home/home_controller.dart';
-import 'package:provider/provider.dart';
 
 void main() async {
   await dotenv.load(fileName: "assets/config/.env");
@@ -34,7 +28,8 @@ class MyApp extends StatelessWidget {
       //       HomeViewModel(PhotoApiRepositoryImpl(PixabayApi(http.Client()))),
       //   child: const HomeScreen(),
       // ),
-      initialBinding: InitialBinding(),
+      initialBinding: InitialBinding(), 
+      initialRoute: '/',     
       getPages: [
         GetPage(name: '/', page: ()=> const HomeScreen()),
       ],
