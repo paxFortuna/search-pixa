@@ -5,9 +5,9 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_search/data/data_source/pixabay_api.dart';
 import 'package:image_search/data/repository/photo_api_repository_impl.dart';
-import 'package:image_search/presentation/home/home_bidings.dart';
+import 'package:image_search/presentation/home/initial_binding.dart';
 import 'package:image_search/presentation/home/home_screen.dart';
-import 'package:image_search/presentation/home/home_view_model.dart';
+import 'package:image_search/presentation/home/home_controller.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
