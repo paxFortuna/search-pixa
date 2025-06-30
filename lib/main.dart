@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_search/data/data_source/pixabay_api.dart';
 import 'package:image_search/data/repository/photo_api_repository_impl.dart';
+import 'package:image_search/presentation/home/home_bidings.dart';
 import 'package:image_search/presentation/home/home_screen.dart';
 import 'package:image_search/presentation/home/home_view_model.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +20,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -26,11 +29,15 @@ class MyApp extends StatelessWidget {
       //   viewModel: HomeViewModel(PixabayApi()),
       //   child: const HomeScreen(),
       //   ),
-      home: ChangeNotifierProvider(
-        create: (_) =>
-            HomeViewModel(PhotoApiRepositoryImpl(PixabayApi(http.Client()))),
-        child: const HomeScreen(),
-      ),
+      // home: ChangeNotifierProvider(
+      //   create: (_) =>
+      //       HomeViewModel(PhotoApiRepositoryImpl(PixabayApi(http.Client()))),
+      //   child: const HomeScreen(),
+      // ),
+      initialBinding: InitialBinding(),
+      getPages: [
+        GetPage(name: '/', page: ()=> const HomeScreen()),
+      ],
     );
   }
 }

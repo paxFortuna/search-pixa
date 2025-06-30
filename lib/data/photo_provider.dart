@@ -7,7 +7,7 @@ class PhotoProvider extends InheritedWidget {
   // Stream
   // final _photoScreamController = StreamController<List<Photo>>()..add([]);
   // Stream<List<Photo>> get photoStream => _photoScreamController.stream;
-  final HomeViewModel viewModel;
+  final HomeController viewModel;
   const PhotoProvider( {
     super.key, 
     required this.viewModel,

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:image_search/data/data_source/pixabay_api.dart';
+import 'package:image_search/data/repository/photo_api_repository_impl.dart';
 import 'package:image_search/presentation/home/home_view_model.dart';
 import 'package:image_search/presentation/components/photo_widget.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
     // final viewModel = PhotoProvider.of(context).viewModel;
     // final viewModel = Provider.of<HomeViewModel>(context);
     // Consumer<HomeViewModel> 사용하면 필요 없음.
-    final viewModel = context.watch<HomeViewModel>();
+    // final viewModel = context.watch<HomeViewModel>();
+    final viewModel = Get.put(
+  HomeController(PhotoApiRepositoryImpl(PixabayApi(http.Client())))
+);
+
 
     return Scaffold(
       appBar: AppBar(title: Text('Image Search App'), centerTitle: true),
@@ -59,22 +67,25 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Expanded(
-            child: GridView.builder(
-              padding: const EdgeInsets.all(16),
-              // shrinkWrap: true, // 영역 확보
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
+            child: Obx(()=>
+              GridView.builder(
+                padding: const EdgeInsets.all(16),
+                // shrinkWrap: true, // 영역 확보
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                ),
+                // 
+                itemCount: viewModel.photos.length,
+                itemBuilder: (context, index) {
+                  //
+                  final photo = viewModel.photos[index];
+                  return PhotoWidget(
+                    photo: photo,
+                  );
+                },
               ),
-              itemCount: viewModel.photos.length,
-              itemBuilder: (context, index) {
-                //
-                final photo = viewModel.photos[index];
-                return PhotoWidget(
-                  photo: photo,
-                );
-              },
             ),
           ),
         ],

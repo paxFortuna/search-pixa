@@ -3,8 +3,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user.freezed.dart';
+part 'user.g.dart';
 // ignore_for_file: annotate_overrides
 @freezed
+@JsonSerializable() 
 class User with _$User {
   final String id;
   final String name;
