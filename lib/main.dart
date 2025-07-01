@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:image_search/presentation/home/initial_binding.dart';
 import 'package:image_search/presentation/home/home_screen.dart';
+import 'package:image_search/presentation/tab_bar.dart';
 
 void main() async {
   await dotenv.load(fileName: "assets/config/.env");
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       initialBinding: InitialBinding(), 
       initialRoute: '/',     
       getPages: [
+        GetPage(name: '/', page: ()=> const TabBarScreen()),
         GetPage(name: '/', page: ()=> const HomeScreen()),
       ],
     );

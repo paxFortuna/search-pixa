@@ -2,6 +2,7 @@ import 'dart:async';import 'package:flutter/material.dart';
 import 'package:image_search/domain/model/photo.dart';
 import 'package:get/get.dart';
 import 'package:image_search/domain/repository/photo_api_repository.dart';
+import 'package:image_search/presentation/home/home_screen.dart';
 
 class HomeController extends GetxController {
   final PhotoApiRepository repository;
@@ -24,6 +25,21 @@ class HomeController extends GetxController {
     final result = await repository.fetch(query);
     _photos.assignAll(result);
   }
+
+  // RxList로 선언하고 초기값을 지정합니다.
+  RxList<Tab> myTaps = <Tab>[
+    Tab(icon: Icon(Icons.home), text: '홈'),
+    Tab(icon: Icon(Icons.feed), text: '동네'),
+    Tab(icon: Icon(Icons.chat_bubble_outline_rounded), text: '채팅'),
+    Tab(icon: Icon(Icons.person_2_outlined), text: '마이'),
+  ].obs;
+
+  final RxList<Widget> myTabItems=[
+    const HomeScreen(),
+    Center(child: Text('동네'),),
+    Center(child: Text('채팅'),),
+    Center(child: Text('마이'),),
+  ].obs;
 }
 
 // class HomeViewModel with ChangeNotifier {

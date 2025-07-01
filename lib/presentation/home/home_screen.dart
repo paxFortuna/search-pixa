@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:http/http.dart' as http;
-import 'package:image_search/data/data_source/pixabay_api.dart';
-import 'package:image_search/data/repository/photo_api_repository_impl.dart';
+// import 'package:image_search/data/data_source/pixabay_api.dart';
+// import 'package:image_search/data/repository/photo_api_repository_impl.dart';
 import 'package:image_search/presentation/home/home_controller.dart';
 import 'package:image_search/presentation/components/photo_widget.dart';
 
 class HomeScreen extends GetView<HomeController> {
   const HomeScreen({super.key});
 
-//   @override
-//   State<HomeScreen> createState() => _HomeScreenState();
-// }
+  //   @override
+  //   State<HomeScreen> createState() => _HomeScreenState();
+  // }
 
-// class _HomeScreenState extends State<HomeScreen> {
+  // class _HomeScreenState extends State<HomeScreen> {
   // final _controller = TextEditingController();
 
   // @override
@@ -32,7 +32,7 @@ class HomeScreen extends GetView<HomeController> {
     // Consumer<HomeViewModel> 사용하면 필요 없음.
     // final viewModel = context.watch<HomeViewModel>();
 
-    // PixbayApi 생성자 제거 
+    // PixbayApi 생성자 제거
     //   final viewModel = Get.put(
     // HomeController(PhotoApiRepositoryImpl(PixabayApi(http.Client())))
     // );
@@ -42,7 +42,11 @@ class HomeScreen extends GetView<HomeController> {
     // );
 
     return Scaffold(
-      appBar: AppBar(title: Text('Image Search App'), centerTitle: true),
+      // appBar: AppBar(
+      //   title: Text('Image Search App'),
+      //   centerTitle: true,
+        
+      // ),     
       body: Column(
         children: [
           Padding(
