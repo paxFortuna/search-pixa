@@ -5,6 +5,7 @@ import 'package:image_search/user/data/data_source/user_api.dart';
 import 'package:image_search/user/data/repository_impl/user_api_repository_impl.dart';
 import 'package:image_search/user/domain/model/user.dart';
 import 'package:image_search/user/presentation/controller/user_controller.dart';
+import 'package:image_search/user/presentation/detail/user_detail_page.dart';
 
 class UserListScreen extends StatefulWidget {
   const UserListScreen({super.key});
@@ -36,6 +37,14 @@ class _UserListScreenState extends State<UserListScreen> {
       appBar: AppBar(
         title: const Text('User List'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.to(() => UserDetailPage(user: viewModel.users.first));
+            },
+            icon: Icon(Icons.search),
+          ),
+        ],
         // backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Column(
@@ -44,6 +53,39 @@ class _UserListScreenState extends State<UserListScreen> {
           const AppFont(
             '가입자 리스트',
             align: TextAlign.center,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              // controller: _controller,
+              // controller: viewModel.controller,
+              controller: viewModel.controller,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                suffixIcon: IconButton(
+                  // 동일한 입력값인 경우 디테일 페이지로 전달
+                  onPressed: () async {
+                    final input = viewModel.controller.text;                    
+                    User? matchedUser;
+                    try {
+                      matchedUser = viewModel.users.firstWhere(
+                        (user) => user.id == input,
+                      );
+                    } catch (e) {
+                      matchedUser = null;
+                    }
+                    if (matchedUser != null) {
+                      Get.to(() => UserDetailPage(user: matchedUser!));
+                    } else {
+                      Get.snackbar('오류', '해당 ID를 가진 사용자가 없습니다.');
+                    }
+                  },
+                  icon: const Icon(Icons.search),
+                ),
+              ),
+            ),
           ),
           Expanded(
             child: FutureBuilder<List<User>>(
@@ -70,8 +112,13 @@ class _UserListScreenState extends State<UserListScreen> {
                     itemBuilder: (context, index) {
                       final user = users[index];
                       return ListTile(
-                        leading: CircleAvatar(
-                          child: Text(user.id), // ID를 아바타에 표시
+                        leading: GestureDetector(
+                          onTap: (){
+                            Get.to(()=>UserDetailPage(user: user));
+                          },
+                          child: CircleAvatar(
+                            child: Text(user.id), // ID를 아바타에 표시
+                          ),
                         ),
                         title: Text(user.name),
                         subtitle: Text(user.email),

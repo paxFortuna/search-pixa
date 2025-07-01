@@ -12,6 +12,10 @@ class UserController extends GetxController {
   final UserApiRepository userApiRepository;
 
   UserController(this.userApiRepository);
+
+  final _controller = TextEditingController();
+  //
+  TextEditingController get controller => _controller;
   final RxList<User> _users = <User>[].obs;
 
   List<User> get users => _users;
