@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:image_search/a_common/components/app_font.dart';
 import 'package:image_search/user/domain/model/user.dart';
 
