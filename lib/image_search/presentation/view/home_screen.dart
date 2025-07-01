@@ -79,25 +79,30 @@ class HomeScreen extends GetView<HomeController> {
           ),
           Expanded(
             child: Obx(
-              () => GridView.builder(
-                padding: const EdgeInsets.all(16),
-                // shrinkWrap: true, // 영역 확보
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                ),
-                //
-                // itemCount: viewModel.photos.length,
-                itemCount: controller.photos.length,
-                itemBuilder: (context, index) {
-                  //
-                  // final photo = viewModel.photos[index];
-                  final photo = controller.photos[index];
-                  return PhotoWidget(
-                    photo: photo,
-                  );
+              () => InkWell(
+                onTap: (){
+                  Get.toNamed('/user');
                 },
+                child: GridView.builder(              
+                  padding: const EdgeInsets.all(16),
+                  // shrinkWrap: true, // 영역 확보
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                  ),
+                  //
+                  // itemCount: viewModel.photos.length,
+                  itemCount: controller.photos.length,
+                  itemBuilder: (context, index) {
+                    //
+                    // final photo = viewModel.photos[index];
+                    final photo = controller.photos[index];
+                    return PhotoWidget(
+                      photo: photo,
+                    );
+                  },
+                ),
               ),
             ),
           ),

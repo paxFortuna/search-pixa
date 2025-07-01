@@ -13,7 +13,7 @@ class AppFont extends StatelessWidget {
   const AppFont(
     this.text, {
     super.key,
-    this.color = Colors.white,
+    this.color = Colors.black,
     this.align,
     this.size,
     this.fontWeight,
