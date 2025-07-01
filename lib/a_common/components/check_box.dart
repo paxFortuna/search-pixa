@@ -30,7 +30,7 @@ class CheckBox extends StatelessWidget {
               ),
               color: isChecked
                 ? const Color(0xffFD6f1f)
-                  :const Color(0xff3c3c3e).withOpacity(0),
+                  :const Color(0xff3c3c3e).withValues(alpha: (0.0 * 255)),
             ),
             width: 24,
               height: 24,

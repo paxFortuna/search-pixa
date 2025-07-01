@@ -36,7 +36,8 @@ class UserTemperatureWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
-              color: colorTemp[(temperature / 15).toInt()].withOpacity(0.3),
+              // color: colorTemp[(temperature / 15).toInt()].withOpacity(0.3),
+              color: colorTemp[(temperature / 15).toInt()].withValues(alpha: (0.3 * 255)),
             ),
             child: AppFont(
               '$temperature°C',

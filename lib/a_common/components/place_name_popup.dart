@@ -23,7 +23,8 @@ class _PlaceNamePopupState extends State<PlaceNamePopup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.5),
+      // backgroundColor: Colors.black.withOpacity(0.5),
+      backgroundColor: Colors.black.withValues(alpha: (0.5 * 255)),
       body: Align(
         child: Stack(
           fit: StackFit.expand,
@@ -31,7 +32,7 @@ class _PlaceNamePopupState extends State<PlaceNamePopup> {
             Positioned(
               child: GestureDetector(
                 onTap: Get.back,
-                child: Container(color: Colors.black.withOpacity(0.1)),
+                child: Container(color: Colors.black.withValues(alpha: (0.1 * 255)),),
               ),
             ),
             Positioned(

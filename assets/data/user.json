@@ -1,3 +1,32 @@
-[{"id": "101", "name":"kim", "email":"park"},
-{"id": "102", "name":"park", "email":"choi"},
-{"id": "103", "name":"choi", "email":"jjja"}]
+[
+    {
+        "id": "101",
+        "name": "kim",
+        "email": "park"
+    },
+    {
+        "id": "102",
+        "name": "park",
+        "email": "choi"
+    },
+    {
+        "id": "103",
+        "name": "choi",
+        "email": "jjja"
+    },
+    {
+        "id": "101",
+        "name": "kim",
+        "email": "park"
+    },
+    {
+        "id": "102",
+        "name": "park",
+        "email": "choi"
+    },
+    {
+        "id": "103",
+        "name": "choi",
+        "email": "jjja"
+    }
+]
