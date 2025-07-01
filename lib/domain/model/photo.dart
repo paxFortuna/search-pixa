@@ -8,6 +8,7 @@ part 'photo.g.dart';
 // ignore_for_file: annotate_overrides
 @freezed
 @JsonSerializable() // fromJson, toJson 사용하기 위해
+// json에서 모델 클래스 만들었다면, 아래 3.0 방식이 좋은 것 같음.
 class Photo with _$Photo{
   final int id;
   final String tags;

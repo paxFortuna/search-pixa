@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 import 'package:image_search/data/data_source/pixabay_api.dart';
 import 'package:image_search/data/repository/photo_api_repository_impl.dart';
 import 'package:image_search/presentation/home/home_controller.dart';
 import 'package:image_search/presentation/components/photo_widget.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
+//   @override
+//   State<HomeScreen> createState() => _HomeScreenState();
+// }
 
-class _HomeScreenState extends State<HomeScreen> {
-  final _controller = TextEditingController();
+// class _HomeScreenState extends State<HomeScreen> {
+  // final _controller = TextEditingController();
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   super.dispose();
+  // }
 
   // List<Photo> _photos = [];
 
@@ -31,10 +31,14 @@ class _HomeScreenState extends State<HomeScreen> {
     // final viewModel = Provider.of<HomeViewModel>(context);
     // Consumer<HomeViewModel> 사용하면 필요 없음.
     // final viewModel = context.watch<HomeViewModel>();
-    final viewModel = Get.put(
-  HomeController(PhotoApiRepositoryImpl(PixabayApi(http.Client())))
-);
 
+    // PixbayApi 생성자 제거 
+    //   final viewModel = Get.put(
+    // HomeController(PhotoApiRepositoryImpl(PixabayApi(http.Client())))
+    // );
+    final viewModel = Get.put(
+      HomeController(PhotoApiRepositoryImpl(PixabayApi())),
+    );
 
     return Scaffold(
       appBar: AppBar(title: Text('Image Search App'), centerTitle: true),
@@ -43,7 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
-              controller: _controller,
+              // controller: _controller,
+              controller: viewModel.controller,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -53,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     //
                     // // final photos = await photoProvider.api.fetch(_controller.text);
                     // photoProvider.fetch(_controller.text);
-                    viewModel.fetch(_controller.text);
+                    viewModel.fetch(viewModel.controller.text);
                     // Consumer<HomeViewModel> 사용하는 경우 아래
                     // context.read<HomeViewModel>().fetch(_controller.text);
                     // // setState(() {
@@ -66,8 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Expanded(
-            child: Obx(()=>
-              GridView.builder(
+            child: Obx(
+              () => GridView.builder(
                 padding: const EdgeInsets.all(16),
                 // shrinkWrap: true, // 영역 확보
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -75,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
                 ),
-                // 
+                //
                 itemCount: viewModel.photos.length,
                 itemBuilder: (context, index) {
                   //

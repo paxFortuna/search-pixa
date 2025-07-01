@@ -3,8 +3,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
 class PixabayApi {
-  final http.Client client;
-  PixabayApi(this.client);
+  // final http.Client client;
+  // PixabayApi(this.client);
 
   static final apiKey = dotenv.env['API_KEY'] ?? '';
   static const baseUrl = 'https://pixabay.com';
@@ -22,7 +22,8 @@ class PixabayApi {
   // }
   // Iterable 타입으로 대체
   Future<Iterable> fetch(String query) async {
-    final response = await client.get(
+    // final response = await client.get(
+    final response = await http.get(
       Uri.parse(
         '$baseUrl/api/?key=$apiKey&q=$query&image_type=photo&pretty=true'
       ),

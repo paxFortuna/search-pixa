@@ -1,4 +1,5 @@
-import 'dart:async';import 'package:image_search/domain/model/photo.dart';
+import 'dart:async';import 'package:flutter/material.dart';
+import 'package:image_search/domain/model/photo.dart';
 import 'package:get/get.dart';
 import 'package:image_search/domain/repository/photo_api_repository.dart';
 
@@ -7,8 +8,17 @@ class HomeController extends GetxController {
   HomeController(this.repository);
 
   final RxList<Photo> _photos = <Photo>[].obs;
-
   List<Photo> get photos => _photos;
+
+  
+  final _controller = TextEditingController();
+  TextEditingController get controller => _controller;
+  
+  @override
+  void onClose() {
+    super.onClose();
+    _controller.dispose();
+  }
 
   Future<void> fetch(String query) async {
     final result = await repository.fetch(query);
