@@ -16,7 +16,12 @@ class User with _$User {
     required this.name,
     required this.email,
   });
+  
+factory User.fromJson(Map<String, dynamic> json) 
+  => _$UserFromJson(json); 
 
+  // toJson()은 freezed에서 제공하는 걸로 사용
+}
 // dart dart class + equatiable 연동
 // class User extends Equatable {
 //   final String id;
@@ -82,4 +87,4 @@ class User with _$User {
 
   // @override
   // List<Object> get props => [id, name, email];
-}
+// }
