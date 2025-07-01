@@ -6,7 +6,7 @@ import 'package:image_search/data/repository/photo_api_repository_impl.dart';
 import 'package:image_search/presentation/home/home_controller.dart';
 import 'package:image_search/presentation/components/photo_widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends GetView<HomeController> {
   const HomeScreen({super.key});
 
 //   @override
@@ -36,9 +36,10 @@ class HomeScreen extends StatelessWidget {
     //   final viewModel = Get.put(
     // HomeController(PhotoApiRepositoryImpl(PixabayApi(http.Client())))
     // );
-    final viewModel = Get.put(
-      HomeController(PhotoApiRepositoryImpl(PixabayApi())),
-    );
+    // GetView로 제거
+    // final viewModel = Get.put(
+    //   HomeController(PhotoApiRepositoryImpl(PixabayApi())),
+    // );
 
     return Scaffold(
       appBar: AppBar(title: Text('Image Search App'), centerTitle: true),
@@ -48,7 +49,8 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: TextField(
               // controller: _controller,
-              controller: viewModel.controller,
+              // controller: viewModel.controller,
+              controller: controller.controller,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -58,7 +60,8 @@ class HomeScreen extends StatelessWidget {
                     //
                     // // final photos = await photoProvider.api.fetch(_controller.text);
                     // photoProvider.fetch(_controller.text);
-                    viewModel.fetch(viewModel.controller.text);
+                    // viewModel.fetch(viewModel.controller.text);
+                    controller.fetch(controller.controller.text);
                     // Consumer<HomeViewModel> 사용하는 경우 아래
                     // context.read<HomeViewModel>().fetch(_controller.text);
                     // // setState(() {
@@ -81,10 +84,12 @@ class HomeScreen extends StatelessWidget {
                   mainAxisSpacing: 16,
                 ),
                 //
-                itemCount: viewModel.photos.length,
+                // itemCount: viewModel.photos.length,
+                itemCount: controller.photos.length,
                 itemBuilder: (context, index) {
                   //
-                  final photo = viewModel.photos[index];
+                  // final photo = viewModel.photos[index];
+                  final photo = controller.photos[index];
                   return PhotoWidget(
                     photo: photo,
                   );
