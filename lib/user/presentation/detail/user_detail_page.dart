@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_search/a_common/components/app_font.dart';
 import 'package:image_search/user/domain/model/user.dart';
 
@@ -10,6 +11,12 @@ class UserDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Get.offNamed('/');
+        //   },
+        //   icon: Icon(Icons.arrow_back_sharp),
+        // ),
         title: Text('${user.id}님을 불어옴'),
         centerTitle: true,
       ),

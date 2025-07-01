@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_search/a_common/bindings/bottom_nav_binding.dart';
@@ -38,8 +36,16 @@ class MyApp extends StatelessWidget {
           binding: BottomNavBinding(),
         ),
         // 아래 두 라우트는 initailBinding됨. 다른 콘트롤러 있는 라우트는 binding해줘야 함.
-        GetPage(name: '/tab', page: () => const TabBarScreen()),
-        GetPage(name: '/home', page: () => const HomeScreen()),
+        GetPage(
+          name: '/tab',
+          page: () => const TabBarScreen(),
+          // binding: InitialBinding(),
+        ),
+        GetPage(
+          name: '/home',
+          page: () => const HomeScreen(),
+          // binding: InitialBinding(),
+        ),
         GetPage(
           name: '/user',
           page: () => const UserListScreen(),
