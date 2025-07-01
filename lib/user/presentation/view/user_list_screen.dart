@@ -4,7 +4,7 @@ import 'package:image_search/a_common/components/app_font.dart';
 import 'package:image_search/user/data/data_source/user_api.dart';
 import 'package:image_search/user/data/repository_impl/user_api_repository_impl.dart';
 import 'package:image_search/user/domain/model/user.dart';
-import 'package:image_search/user/presentation/controller.dart/user_controller.dart';
+import 'package:image_search/user/presentation/controller/user_controller.dart';
 
 class UserListScreen extends StatefulWidget {
   const UserListScreen({super.key});

@@ -6,7 +6,7 @@ import 'package:image_search/chat/presentation/view/chat_screen.dart';
 import 'package:image_search/my/presentation/view/my_screen.dart';
 import 'package:image_search/nabor/presentation/view/nabor_screen.dart';
 import 'package:image_search/image_search/tab_bar.dart';
-import 'package:image_search/user/presentation/view/user_list_screen.dart';
+import 'package:image_search/user/tab_bar.dart';
 
 class Root extends GetView<BottomNavController> {
   const Root({super.key});
@@ -19,7 +19,7 @@ class Root extends GetView<BottomNavController> {
         controller: controller.tabController,
         children: [
           const TabBarScreen(),
-          const UserListScreen(),
+          const UserTabBarScreen(),
           const ChatScreen(),
           const NaborScreen(),
           const MyScreen(),

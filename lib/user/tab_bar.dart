@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_search/image_search/presentation/controller/home_controller.dart';
+import 'package:image_search/user/presentation/controller/user_controller.dart';
 
-class TabBarScreen extends GetView<HomeController> {
-  const TabBarScreen({super.key});
+class UserTabBarScreen extends GetView<UserController> {
+  const UserTabBarScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +14,12 @@ class TabBarScreen extends GetView<HomeController> {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return [
             SliverAppBar(
-              title: Text('Image Search App'),
+              title: Text('User List App'),
               centerTitle: true,
               floating: true,
               pinned: true,
               bottom: TabBar(
+
                 tabs: controller.myTaps,
               ),
             ),
