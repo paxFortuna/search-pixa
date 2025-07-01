@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_search/common/bindings/bottom_nav_binding.dart';
+import 'package:image_search/a_common/bindings/bottom_nav_binding.dart';
 import 'package:image_search/image_search/presentation/home/initial_binding.dart';
 import 'package:image_search/image_search/presentation/home/home_screen.dart';
 import 'package:image_search/root.dart';
 import 'package:image_search/tab_bar.dart';
-import 'package:image_search/user_list/presentation/binding/user_binding.dart';
-import 'package:image_search/user_list/presentation/user_list/user_list_screen.dart';
+import 'package:image_search/user/presentation/binding/user_binding.dart';
+import 'package:image_search/user/presentation/view/user_list_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

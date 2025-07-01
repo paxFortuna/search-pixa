@@ -3,7 +3,7 @@ import 'package:image_search/image_search/domain/model/photo.dart';
 import 'package:get/get.dart';
 import 'package:image_search/image_search/domain/repository/photo_api_repository.dart';
 import 'package:image_search/image_search/presentation/home/home_screen.dart';
-import 'package:image_search/user_list/presentation/user_list/user_list_screen.dart';
+import 'package:image_search/user/presentation/view/user_list_screen.dart';
 
 class HomeController extends GetxController {
   final PhotoApiRepository repository;
