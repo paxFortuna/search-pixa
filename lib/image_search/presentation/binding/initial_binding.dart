@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:image_search/image_search/data/data_source/pixabay_api.dart';
 import 'package:image_search/image_search/data/repository_impl/photo_api_repository_impl.dart';
 import 'package:image_search/image_search/domain/repository/photo_api_repository.dart';
-import 'package:image_search/image_search/presentation/home/home_controller.dart';
+import 'package:image_search/image_search/presentation/controller/home_controller.dart';
 
 class InitialBinding extends Bindings {
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:image_search/image_search/presentation/home/home_controller.dart';
+import 'package:image_search/image_search/presentation/controller/home_controller.dart';
 
 class PhotoProvider extends InheritedWidget {
   // 인스턴스 생성하여 main에서 주입한다.

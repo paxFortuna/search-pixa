@@ -5,7 +5,7 @@ import 'package:image_search/a_common/controller/bottom_nav_controller.dart';
 import 'package:image_search/chat/presentation/view/chat_screen.dart';
 import 'package:image_search/my/presentation/view/my_screen.dart';
 import 'package:image_search/nabor/presentation/view/nabor_screen.dart';
-import 'package:image_search/tab_bar.dart';
+import 'package:image_search/image_search/tab_bar.dart';
 import 'package:image_search/user/presentation/view/user_list_screen.dart';
 
 class Root extends GetView<BottomNavController> {

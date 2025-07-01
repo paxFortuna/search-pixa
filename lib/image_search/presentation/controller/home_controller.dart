@@ -1,8 +1,12 @@
-import 'dart:async';import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:flutter/material.dart';
+import 'package:image_search/chat/presentation/view/chat_screen.dart';
 import 'package:image_search/image_search/domain/model/photo.dart';
 import 'package:get/get.dart';
 import 'package:image_search/image_search/domain/repository/photo_api_repository.dart';
-import 'package:image_search/image_search/presentation/home/home_screen.dart';
+import 'package:image_search/image_search/presentation/view/home_screen.dart';
+import 'package:image_search/my/presentation/view/my_screen.dart';
+import 'package:image_search/nabor/presentation/view/nabor_screen.dart';
 import 'package:image_search/user/presentation/view/user_list_screen.dart';
 
 class HomeController extends GetxController {
@@ -39,9 +43,9 @@ class HomeController extends GetxController {
   final RxList<Widget> myTabItems=[
     const HomeScreen(),
     const UserListScreen(),
-    Center(child: Text('동네'),),
-    Center(child: Text('채팅'),),
-    Center(child: Text('마이'),),
+    const ChatScreen(),
+    const NaborScreen(),
+    const MyScreen(),
   ].obs;
 }
 

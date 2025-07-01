@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_search/image_search/presentation/home/home_controller.dart';
+import 'package:image_search/image_search/presentation/controller/home_controller.dart';
 
 class TabBarScreen extends GetView<HomeController> {
   const TabBarScreen({super.key});
