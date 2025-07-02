@@ -43,4 +43,5 @@ class UserController extends GetxController {
     const NaborScreen(),
     const MyScreen(),
   ].obs;
+
 }
